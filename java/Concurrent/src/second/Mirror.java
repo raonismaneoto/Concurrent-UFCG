@@ -4,10 +4,10 @@ import java.sql.Time;
 
 public class Mirror<T> implements Runnable {
 	
-	private Main client;
+	private ReliableRequest client;
 	private String serverName;
 	
-	public Mirror(Main client, String serverName) {
+	public Mirror(ReliableRequest client, String serverName) {
 		this.client = client;
 		this.serverName = serverName;
 	}
@@ -19,10 +19,6 @@ public class Mirror<T> implements Runnable {
 				try {
 					if(!this.client.hasWritten()) {
 						client.write(this.serverName);
-						System.out.println(this.serverName + " I've made it");
-					}
-					else {
-						System.out.println(this.serverName + " couldn't write");
 					}
 				} finally {
 					this.client.getLock().unlock();
