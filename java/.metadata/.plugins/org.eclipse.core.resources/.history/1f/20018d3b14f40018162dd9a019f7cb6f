@@ -1,0 +1,9 @@
+package seventh;
+
+public class StringPrinter implements Runnable{
+	
+	public void run() {
+		
+	}
+
+}

@@ -1,0 +1,10 @@
+package second;
+
+public class Main {
+	/**
+	 * Maybe latche it is.
+	 * The main thread, the client, initialize it with 1 as parameter, starts 3 other threads
+	 * that simulates the request and call await() in the latch. The 3 other threads call countDown
+	 * in the latche once their work is done.
+	 */
+}

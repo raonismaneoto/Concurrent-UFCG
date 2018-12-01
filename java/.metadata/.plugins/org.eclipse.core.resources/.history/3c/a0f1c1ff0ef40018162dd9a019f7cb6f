@@ -1,0 +1,17 @@
+package seventh;
+
+import java.util.List;
+
+public class StringGenerator implements Runnable{
+	
+	private List<String> buffer;
+	
+	public StringGenerator(ArrayList<String> buffer) {
+		this.buffer = buffer;
+	}
+	
+	public void run() {
+		
+	}
+
+}

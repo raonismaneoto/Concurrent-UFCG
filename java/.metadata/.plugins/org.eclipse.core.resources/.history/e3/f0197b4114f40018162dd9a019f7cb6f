@@ -1,0 +1,15 @@
+package seventh;
+
+public class StringPrinter implements Runnable{
+	
+	private List<String> buffer;
+	
+	public StringPrinter(ArrayList<String> buffer) {
+		this.buffer = buffer;
+	}
+	
+	public void run() {
+		
+	}
+
+}

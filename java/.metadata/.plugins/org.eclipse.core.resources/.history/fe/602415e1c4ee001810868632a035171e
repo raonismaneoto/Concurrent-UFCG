@@ -1,0 +1,36 @@
+package second;
+
+import java.sql.Time;
+
+public class Mirror<T> implements Runnable {
+	
+	private Main client;
+	private String serverName;
+	
+	public Mirror(Main client, String serverName) {
+		this.client = client;
+		this.serverName = serverName;
+	}
+	
+	public void run() {
+		while(true) {
+		if(this.client.getLock().tryLock()) {
+			try {
+				client.write(this.serverName);
+			} finally {
+				this.client.getLock().unlock();
+			}
+		} else if(this.client.hasWritten()) {
+			System.out.println(this.serverName + "couldn't write");
+			return;
+		} else {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		}
+		
+	}
+}

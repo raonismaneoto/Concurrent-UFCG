@@ -1,0 +1,15 @@
+package second;
+
+public class Main {
+	String value;
+	
+	private String reliableRequest() {
+		Thread mirror1 = new Thread();
+		
+		return "";
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+}

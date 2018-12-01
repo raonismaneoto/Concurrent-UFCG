@@ -1,0 +1,19 @@
+package second;
+
+public class Main {
+	private String value;
+	
+	private String reliableRequest() {
+		Thread mirror1 = new Thread(new Mirror());
+		Thread mirror2 = new Thread(new Mirror());
+		Thread mirror3 = new Thread(new Mirror());
+		
+		
+		
+		return "";
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+}

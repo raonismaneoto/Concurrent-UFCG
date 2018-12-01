@@ -1,0 +1,13 @@
+package seventh;
+
+public class StringFilter implements Runnable{
+	
+	public StringFilter() {
+		
+	}
+	
+	public void run() {
+		
+	}
+
+}

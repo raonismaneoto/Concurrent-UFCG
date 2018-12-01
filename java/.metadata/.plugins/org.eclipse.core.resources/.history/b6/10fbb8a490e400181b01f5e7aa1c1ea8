@@ -1,0 +1,16 @@
+package first;
+
+public class Main {
+	
+	class Producer {
+		
+	}
+	
+	class Consumer {
+		
+	}
+	
+	public static void main(String args[]) {
+		
+	}
+}

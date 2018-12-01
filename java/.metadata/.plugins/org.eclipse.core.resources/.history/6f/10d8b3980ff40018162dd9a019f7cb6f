@@ -1,0 +1,19 @@
+package seventh;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+public class StringGenerator implements Runnable{
+	
+	private List<String> buffer;
+	
+	public StringGenerator(ArrayList<String> buffer) {
+		this.buffer = buffer;
+	}
+	
+	public void run() {
+		String generated = new 
+	}
+
+}

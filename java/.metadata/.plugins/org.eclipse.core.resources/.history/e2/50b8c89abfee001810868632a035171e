@@ -1,0 +1,13 @@
+package second;
+
+public class Main {
+	
+	private String reliableRequest() {
+		String value;
+		return "";
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+}

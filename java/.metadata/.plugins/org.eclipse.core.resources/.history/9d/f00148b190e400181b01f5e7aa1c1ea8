@@ -1,0 +1,22 @@
+package first;
+
+public class Main {
+	
+	class Producer implements Runnable {
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+	
+	class Consumer {
+		
+	}
+	
+	public static void main(String args[]) {
+		
+	}
+}

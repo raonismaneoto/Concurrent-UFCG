@@ -1,0 +1,15 @@
+package seventh;
+
+public class StringGenerator implements Runnable{
+	
+	private List<String> buffer;
+	
+	public StringGenerator() {
+		
+	}
+	
+	public void run() {
+		
+	}
+
+}

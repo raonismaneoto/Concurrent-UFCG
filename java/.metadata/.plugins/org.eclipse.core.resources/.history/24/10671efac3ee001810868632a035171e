@@ -1,0 +1,18 @@
+package second;
+
+public class Mirror<T> implements Runnable {
+	
+	private Main client;
+	private String serverName;
+	
+	public Mirror(Main client, String serverName) {
+		this.client = client;
+		this.serverName = serverName;
+	}
+	
+	public void run() {
+		if(this.client.getLock().tryLock()) {
+			client.write(this.serverName);
+		}
+	}
+}

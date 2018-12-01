@@ -1,0 +1,52 @@
+package robocodeNEAT;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+import nl.sandergielisse.mythan.Network;
+
+public class Serializer {
+	
+	private static final String filename = "C:\\Users\\emers\\Documents\\Programas\\IA\\Mythan\\robot-network.txt";
+	
+	public static void write(Network network) {
+		write(network, filename);
+	}
+	
+	public static void write(Network network, String path) {
+		try {
+			FileOutputStream fos = new FileOutputStream(path);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			
+			oos.writeObject(network);
+			oos.flush();
+			
+			oos.close();
+			fos.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static Network read() {
+		return read(filename);
+	}
+	
+	public static Network read(String path) {
+		Network network = null;
+		try {
+			FileInputStream fis = new FileInputStream(path);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			
+			network = (Network) ois.readObject();
+			
+			ois.close();
+			fis.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return network;
+	}
+}

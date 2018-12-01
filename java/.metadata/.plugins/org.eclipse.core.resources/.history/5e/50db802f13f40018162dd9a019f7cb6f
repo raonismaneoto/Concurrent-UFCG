@@ -1,0 +1,16 @@
+package seventh;
+
+public class StringFilter implements Runnable{
+	
+	private List<String> inputBuffer;
+	private List<String> outputBuffer;
+	
+	public StringFilter() {
+		
+	}
+	
+	public void run() {
+		
+	}
+
+}

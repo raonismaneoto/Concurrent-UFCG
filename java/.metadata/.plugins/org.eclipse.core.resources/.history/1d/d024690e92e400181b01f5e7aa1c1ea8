@@ -1,0 +1,60 @@
+package first;
+
+import java.util.Random;
+
+public class Main {
+	
+	class Producer implements Runnable {
+		private Channel chan;
+		
+		public Producer(Channel chan) {
+			this.chan = chan;
+		}
+
+		@Override
+		public void run() {
+			while(this.chan.isFull()) {
+				try {
+					this.chan.wait();
+				} catch (Exception e) {
+				}
+			}
+			String produced = "" + new Random().nextInt();
+			System.out.println("produced " + produced);
+			try {
+				this.chan.putMessage(produced);
+			} catch (Exception e) {
+			}
+		}
+		
+	}
+	
+	class Consumer implements Runnable {
+		private Channel chan;
+		
+		public Consumer(Channel chan) {
+			this.chan = chan;
+		}
+
+		@Override
+		public void run() {
+			while(this.chan.isEmpty()) {
+				try {
+					this.chan.wait();
+				} catch (Exception e) {
+				}
+			}
+			try {
+				String message = this.chan.takeMessage();
+				System.out.println("taken " + message);
+			} catch (Exception e) {
+			}
+			
+		}
+		
+	}
+	
+	public static void main(String args[]) {
+		
+	}
+}

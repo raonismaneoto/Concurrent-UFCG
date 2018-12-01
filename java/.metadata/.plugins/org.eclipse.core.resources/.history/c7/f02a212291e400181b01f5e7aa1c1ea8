@@ -1,0 +1,33 @@
+package first;
+
+public class Main {
+	
+	class Producer implements Runnable {
+		private Channel chan;
+		
+		public Producer(Channel chan) {
+			this.chan = chan;
+		}
+
+		@Override
+		public void run() {
+			
+			
+		}
+		
+	}
+	
+	class Consumer implements Runnable{
+
+		@Override
+		public void run() {
+			
+			
+		}
+		
+	}
+	
+	public static void main(String args[]) {
+		
+	}
+}

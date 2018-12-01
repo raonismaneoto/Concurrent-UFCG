@@ -1,0 +1,17 @@
+package seventh;
+
+import java.util.ArrayList;
+
+public class Main {
+
+	public static void main(String args[]) {
+		ArrayList<String> notFilteredStrings = new ArrayList<String>();
+		ArrayList<String> filteredStrings = new ArrayList<String>();
+		
+		StringGenerator generator = new StringGenerator(notFilteredStrings);
+		StringFilter filter = new StringFilter(notFilteredStrings, filteredStrings);
+		StringPrinter printer = new StringPrinter(filteredStrings);
+		
+		Thread gen = new Thread(generator);
+	}
+}

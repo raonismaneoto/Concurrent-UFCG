@@ -1,0 +1,9 @@
+package sixth;
+
+public class Consumer implements Runnable{
+	
+	public void run() {
+		
+	}
+
+}

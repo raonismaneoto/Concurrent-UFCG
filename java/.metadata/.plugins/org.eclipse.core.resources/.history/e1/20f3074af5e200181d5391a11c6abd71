@@ -1,0 +1,12 @@
+package first;
+
+import java.util.List;
+
+public class ChannelImpl implements Channel {
+	
+	private List<String> buffer;
+	private int limit;
+	public ChannelImpl(int limit) {
+		
+	}
+}

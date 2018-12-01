@@ -1,0 +1,12 @@
+package second;
+
+public class Main {
+	
+	private String reliableRequest() {
+		return "";
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+}

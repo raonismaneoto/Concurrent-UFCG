@@ -1,0 +1,10 @@
+package sixth;
+
+public class Main {
+
+	public static void main(String args[]) {
+		ArrayList<Integer> buffer = new ArrayList<Integer>();
+		Producer producer = new Producer(buffer);
+		
+	}
+}

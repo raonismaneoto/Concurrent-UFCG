@@ -1,0 +1,15 @@
+package second;
+
+public class Mirror<T> implements Runnable {
+	
+	private T client;
+	
+	public Mirror(T client, String serverName) {
+		this.client = client;
+		this.serverName = serverName;
+	}
+	
+	public void run() {
+		
+	}
+}

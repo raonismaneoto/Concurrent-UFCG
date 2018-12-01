@@ -1,0 +1,31 @@
+package first;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ChannelImpl implements Channel {
+	
+	private List<String> buffer;
+	private int limit;
+	
+	public ChannelImpl(int limit) {
+		this.limit = limit;
+		this.buffer = new ArrayList<String>();
+	}
+	
+	public synchronized void putMessage(String message) {
+		while(!this.isEmpty()) {
+			try {
+				this.buffer.wait();
+			} catch (InterruptedException e) {}
+		}
+	}
+	
+	public synchronized String takeMessage() {
+		return "";
+	}
+	
+	private synchronized boolean isEmpty() {
+		return this.buffer.size() == 0;
+	}
+}
