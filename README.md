@@ -2,6 +2,10 @@
 
 # Respostas
 
+2:
+	Para implementar a questão dois usamos o channel da primeira questão. Esse channel tem semântica parecida com a de go, o que facilitou muito. Dessa forma, três mirros são criados e recebem como parâmetro o mesmo channel, que tem tamanho 1. A thread que os cria bloqueia ao tentar ler o conteúdo do channel e só será desbloqueada assim que algum conteúdo estiver disponível. Ao ser desbloqueada ela printa o conteúdo e morre, o que faz com que as outras threads também morram. Assim, as principais primitivas de concorrência utilizadas estão presentes na implementação do channel que garante, em todos os seus métodos, que apenas uma thread executará ali por vez. Para tanto foram usados artíficios disponíveis em java, tais como anotações synchronized. Além disso foi preciso setar os daemons das threads para true, para que dessa forma, assim que o main acabasse elas também morressem.
+	Ter feito a implementação baseada em go simplificou a solução não só em quantidade de código, mas acreditamos que também em eficiência.
+
 8: 
 (a) 1.
 

@@ -1,33 +1,30 @@
 package second;
 
 import java.sql.Time;
+import java.util.Random;
+
+import first.Channel;
 
 public class Mirror<T> implements Runnable {
 	
-	private ReliableRequest client;
 	private String serverName;
+	private Channel<String> chan;
 	
-	public Mirror(ReliableRequest client, String serverName) {
-		this.client = client;
+	public Mirror(String serverName, Channel<String> chan) {
 		this.serverName = serverName;
+		this.chan = chan;
 	}
 	
-	@SuppressWarnings("finally")
 	public void run() {
 		while(true) {
-			if(this.client.getLock().tryLock()) {
-				try {
-					if(!this.client.hasWritten()) {
-						client.write(this.serverName);
-					}
-				} finally {
-					this.client.getLock().unlock();
-					return;
-				}
-			} else {
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {}
+			try {
+				Thread.sleep(new Random().nextInt(11)*5);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			if(chan.isEmpty()) {
+				chan.putMessage("Answered by " + this.serverName);
 			}
 		}
 		
