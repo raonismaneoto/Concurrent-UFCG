@@ -1,9 +1,0 @@
-package seventh;
-
-public class StringGenerator implements Runnable{
-	
-	public void run() {
-		
-	}
-
-}

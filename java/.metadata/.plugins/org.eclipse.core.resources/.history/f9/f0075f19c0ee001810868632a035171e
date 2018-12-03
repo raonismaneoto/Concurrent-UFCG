@@ -1,8 +1,0 @@
-package second;
-
-public class Mirror implements Runnable {
-	
-	public void run() {
-		
-	}
-}

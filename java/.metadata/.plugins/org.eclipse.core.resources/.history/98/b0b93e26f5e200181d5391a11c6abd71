@@ -1,8 +1,0 @@
-package first;
-
-public class ChannelImpl implements Channel {
-	
-	private List<String> buffer;
-	
-	public ChannelImpl
-}
