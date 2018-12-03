@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import first.Channel;
+
 public class StringGenerator implements Runnable{
 	
-	private List<String> buffer;
+	private Channel<String> buffer;
 	
 	private static final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 	
@@ -19,17 +21,14 @@ public class StringGenerator implements Runnable{
 		return str;
 	}
 	
-	public StringGenerator(ArrayList<String> buffer) {
+	public StringGenerator(Channel<String> buffer) {
 		this.buffer = buffer;
 	}
 	
 	public void run() {
 		while(true) {
-			synchronized(buffer) {
-				String generated = getRandomString();
-				this.buffer.add(generated);
-				this.buffer.notifyAll();
-			}
+			String generated = getRandomString();
+			this.buffer.putMessage(generated);
 		}
 	}
 

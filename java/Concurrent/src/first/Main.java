@@ -5,9 +5,9 @@ import java.util.Random;
 public class Main {
 	
 	public static class Producer implements Runnable {
-		private Channel chan;
+		private Channel<String> chan;
 		
-		public Producer(Channel chan) {
+		public Producer(Channel<String> chan) {
 			this.chan = chan;
 		}
 
@@ -15,17 +15,10 @@ public class Main {
 		public void run() {
 			while (true) {
 				synchronized(this.chan) {
-					while(this.chan.isFull()) {
-						try {
-							this.chan.wait();
-						} catch (Exception e) {
-						}
-					}
 					String produced = "" + new Random().nextInt(11);
 					System.out.println("produced " + produced);
 					try {
 						this.chan.putMessage(produced);
-						this.chan.notifyAll();
 						Thread.sleep(100);
 					} catch (Exception e) {
 					}
@@ -46,18 +39,11 @@ public class Main {
 		public void run() {
 			while (true) {
 				synchronized(this.chan) {
-					while(this.chan.isEmpty()) {
-						try {
-							this.chan.wait();
-						} catch (Exception e) {
-						}
-					}
 					try {
-						String message = this.chan.takeMessage();
+						String message = (String) this.chan.takeMessage();
 						System.out.println("taken " + message);
 					} catch (Exception e) {
 					}
-					this.chan.notifyAll();
 				}
 			}
 		}

@@ -3,34 +3,27 @@ package sixth;
 import java.util.ArrayList;
 import java.util.List;
 
+import first.Channel;
+
 public class Consumer implements Runnable{
 	
-	private List<Integer> buffer;
+	private Channel<Integer> buffer;
 	
-	public Consumer(ArrayList<Integer> buffer) {
+	public Consumer(Channel<Integer> buffer) {
 		this.buffer = buffer;
 	}
 	
 	@Override
 	public void run() {
 		while (true) {
-			synchronized(this.buffer) {
-				while(this.buffer.isEmpty()) {
-					try {
-						this.buffer.wait();
-					} catch (Exception e) {
-					}
-				}
-				try {
-					Integer currentValue = this.buffer.remove(0);
-					if(currentValue %2 == 0) {
-						System.out.println("taken " + currentValue);
-					}
-					Thread.sleep(1000);
-				} catch (Exception e) {
-				}
+			Integer currentValue = (Integer) this.buffer.takeMessage();
+			if(currentValue %2 == 0) {
+				System.out.println("taken " + currentValue);
 			}
+			
+			try {
+				Thread.sleep(1000);
+			} catch (Exception e) {}
 		}
 	}
-
 }

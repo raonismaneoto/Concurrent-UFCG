@@ -3,27 +3,19 @@ package seventh;
 import java.util.ArrayList;
 import java.util.List;
 
+import first.Channel;
+
 public class StringPrinter implements Runnable{
 	
-	private List<String> buffer;
+	private Channel<String> buffer;
 	
-	public StringPrinter(ArrayList<String> buffer) {
+	public StringPrinter(Channel<String> buffer) {
 		this.buffer = buffer;
 	}
 	
 	public void run() {
 		while(true) {
-			synchronized(buffer) {
-				while(buffer.isEmpty()) {
-					try {
-						buffer.wait();
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-				
-				System.out.println("Current alpha string in buffer is " + buffer.remove(0));
-			}
+			System.out.println("Current alpha string in buffer is " + buffer.takeMessage());
 		}
 	}
 

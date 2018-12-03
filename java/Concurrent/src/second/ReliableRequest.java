@@ -2,12 +2,19 @@ package second;
 
 import java.util.concurrent.locks.ReentrantLock;
 
+import first.Channel;
+import first.ChannelImpl;
+
 public class ReliableRequest {
-	private String data;
+	private Channel<String> chan;
 	private ReentrantLock lock = new ReentrantLock();
 	
+	public ReliableRequest() {
+		chan = new ChannelImpl<String>(1);
+	}
+	
 	public void write(String data) {
-		this.data = data;
+		chan.putMessage(data);
 	}
 	
 	public ReentrantLock getLock() {
@@ -15,10 +22,10 @@ public class ReliableRequest {
 	}
 	
 	public synchronized boolean hasWritten() {
-		return this.data != null;
+		return this.chan.isFull();
 	}
 	
-	public String reliableRequest() throws InterruptedException {
+	public String reliableRequest() {
 		Thread mirror1 = new Thread(new Mirror(this, "mirror1.com"));
 		Thread mirror2 = new Thread(new Mirror(this, "mirror2.br"));
 		Thread mirror3 = new Thread(new Mirror(this, "mirror3.edu"));
@@ -27,13 +34,10 @@ public class ReliableRequest {
 		mirror2.start();
 		mirror3.start();
 		
-		mirror1.join();
-		mirror2.join();
-		mirror3.join();
-		return this.data;
+		return this.chan.takeMessage();
 	}
 	
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) {
 		ReliableRequest m = new ReliableRequest();
 		String result = m.reliableRequest();
 		System.out.println(result);

@@ -14,7 +14,7 @@ public class ReliableRequestCaller implements Runnable{
 		ReliableRequest r = new ReliableRequest();
 		try {
 			client.setData(r.reliableRequest());
-		} catch (InterruptedException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

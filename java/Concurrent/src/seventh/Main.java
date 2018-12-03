@@ -2,11 +2,14 @@ package seventh;
 
 import java.util.ArrayList;
 
+import first.Channel;
+import first.ChannelImpl;
+
 public class Main {
 
 	public static void main(String args[]) {
-		ArrayList<String> notFilteredStrings = new ArrayList<String>();
-		ArrayList<String> filteredStrings = new ArrayList<String>();
+		Channel<String> notFilteredStrings = new ChannelImpl<String>(10);
+		Channel<String> filteredStrings = new ChannelImpl<String>(10);
 		
 		StringGenerator generator = new StringGenerator(notFilteredStrings);
 		StringFilter filter = new StringFilter(notFilteredStrings, filteredStrings);

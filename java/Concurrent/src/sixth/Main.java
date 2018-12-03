@@ -2,10 +2,13 @@ package sixth;
 
 import java.util.ArrayList;
 
+import first.Channel;
+import first.ChannelImpl;
+
 public class Main {
 
 	public static void main(String args[]) {
-		ArrayList<Integer> buffer = new ArrayList<Integer>();
+		Channel<Integer> buffer = new ChannelImpl<Integer>(10);
 		Producer producer = new Producer(buffer);
 		Consumer consumer = new Consumer(buffer);
 		

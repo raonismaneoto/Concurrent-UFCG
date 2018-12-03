@@ -27,9 +27,7 @@ public class Mirror<T> implements Runnable {
 			} else {
 				try {
 					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+				} catch (InterruptedException e) {}
 			}
 		}
 		

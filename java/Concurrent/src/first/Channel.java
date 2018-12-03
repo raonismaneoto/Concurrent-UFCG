@@ -1,9 +1,9 @@
 package first;
 
-public interface Channel {
+public interface Channel<T> {
 	
-	public void putMessage(String message) throws Exception;
-	public String takeMessage() throws Exception;
-	public boolean isFull();
-	public boolean isEmpty();
+	T takeMessage();
+	void putMessage(T message);
+	boolean isFull();
+	boolean isEmpty();
 }

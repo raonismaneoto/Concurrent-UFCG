@@ -4,26 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import first.Channel;
+
 public class Producer implements Runnable{
 
-	private List<Integer> buffer;
+	private Channel<Integer> chan;
 	
-	public Producer(ArrayList<Integer> buffer) {
-		this.buffer = buffer;
+	public Producer(Channel<Integer> chan) {
+		this.chan = chan;
 	}
 	
 	@Override
 	public void run() {
 		while (true) {
-			synchronized(this.buffer) {
-				Integer produced = new Random().nextInt(11);
-				try {
-					System.out.println("produced " + produced);
-					this.buffer.add(produced);
-					this.buffer.notifyAll();
-					Thread.sleep(10000);
-				} catch (Exception e) {
-				}
+			Integer produced = new Random().nextInt(11);
+			System.out.println("produced " + produced);
+			chan.putMessage(produced);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
 		}
 	}
