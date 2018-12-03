@@ -3,9 +3,12 @@
 #Respostas
 
 8: 
-(a)	1.
-(b) 13.
-(c) i) Se ambos começarem com 1 as duas regiões poderão ser executadas de forma paralela ou simultânea apesar de
+(a)	
+	1.
+(b) 
+	13.
+(c) 
+	i) Se ambos começarem com 1 as duas regiões poderão ser executadas de forma paralela ou simultânea apesar de
 	estarem sujeitas a um atraso ou outro. Ou seja, ambos conseguem executar suas regiões críticas assim que ganham a cpu e precisam apenas esperar que o outro processo faça um post para poder rodar a região crítica novamente.
 
 	ii) Os processos executarão suas respectivas regiões críticas de forma alternada, primeiro o semáforo S sofre um wait e sua variável de controle vai para 0, a() é executado. Logo em seguida o semáforo Q que tinha 0 na variável de controle sofre um post tornando-a 1. O processo dois é desbloqueado, o que decrementa a variável de controle de Q, executa b() e faz um post em S. Agora é a vez do processo 1 executar novamente e repetir todo o fluxo.
