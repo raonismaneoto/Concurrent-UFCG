@@ -9,9 +9,9 @@ public class RequestExecuter implements Runnable{
 		while(true) {
 			try {
 				System.out.println(r.reliableRequest());
-				Thread.sleep(100);
+				Thread.sleep(500);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				return;
 			}
 		}
 	}
