@@ -23,9 +23,7 @@ public class Mirror<T> implements Runnable {
 				e.printStackTrace();
 			}
 			
-			if(chan.isEmpty()) {
-				chan.putMessage("Answered by " + this.serverName);
-			}
+			chan.putMessage("Answered by " + this.serverName);
 		}
 		
 	}
