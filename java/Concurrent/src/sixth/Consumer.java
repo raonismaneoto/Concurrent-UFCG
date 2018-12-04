@@ -1,8 +1,5 @@
 package sixth;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import first.Channel;
 
 public class Consumer implements Runnable{
