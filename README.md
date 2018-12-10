@@ -1,6 +1,6 @@
 # Concurrent-UFCG
 
-# Respostas
+# Respostas JAVA
 
 2:
 	Para implementar a questão dois usamos o channel da primeira questão. Esse channel tem semântica parecida com a de go, o que facilitou muito. Dessa forma, três mirros são criados e recebem como parâmetro o mesmo channel, que tem tamanho 1. A thread que os cria bloqueia ao tentar ler o conteúdo do channel e só será desbloqueada assim que algum conteúdo estiver disponível. Ao ser desbloqueada ela printa o conteúdo e morre, o que faz com que as outras threads também morram. Assim, as principais primitivas de concorrência utilizadas estão presentes na implementação do channel que garante, em todos os seus métodos, que apenas uma thread executará ali por vez. Para tanto foram usados artíficios disponíveis em java, tais como anotações synchronized. Além disso foi preciso setar os daemons das threads para true, para que dessa forma, assim que o main acabasse elas também morressem.
@@ -21,3 +21,8 @@
 (d) 
  Pode haver deadlock facilmente. Suponha que o processo 1 faça wait(Q), perca a cpu e o processo 2 faça wait(S). O processo dois não conseguirá executar entrar na região critíca pois o 1 já fez wait em Q, ou seja, ele vai bloquear. O processo 1 também não conseguirá entrar na região crítica pois o S já sofreu um wait por 2, o que acarreta um deadlock pois ambos não sairão dessa situação.
  Com sorte, porém, talvez não haja deadlock. O processo 1 pode conseguir pegar as duas travas seguidamente e destravá las no final, permitindo o processo dois de executar, mas nada garante isso.
+
+
+ # Respostas GO
+
+ 1: Usamos canais de go. Dessa forma, três mirros são criados e recebem como parâmetro o mesmo channel, que tem tamanho 1. A thread que cria o canal bloqueia ao tentar ler o conteúdo do channel e só será desbloqueada assim que algum conteúdo estiver disponível. Ao ser desbloqueada ela printa o conteúdo e morre, o que faz com que as outras threads também morram. Assim, as principais primitivas de concorrência utilizadas estão presentes na implementação do channel que garante, em todos os seus métodos, que apenas uma thread executará ali por vez. Assim, se uma goroutine tenta ler de um canal que não tem conteúdo, ela bloqueia, assim como se uma quiser por conteúdo no canal cheio também bloqueia. Isso garante um acesso controlado e uma eficiência muito boa.
