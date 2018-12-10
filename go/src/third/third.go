@@ -13,8 +13,8 @@ func closeCh(done chan interface{}) {
 }
 
 func executeRealibleRequest(ch chan string, done chan interface{}) {
+	go utils.ReliableRequest(ch)
 	for {
-		go utils.ReliableRequest(ch)
 		select {
 		case <-done:
 			fmt.Println("Its over")
