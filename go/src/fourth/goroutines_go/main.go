@@ -8,8 +8,8 @@ import (
 	"time"
 )
 
-func producer(execs int, integers chan int, barr *sync.WaitGroup) {
-	defer barr.Done()
+func producer(execs int, integers chan int, wg *sync.WaitGroup) {
+	defer wg.Done()
 	
 	for i := 0; i < execs; i++ {
 		value := rand.Intn(10) + 1
@@ -17,8 +17,8 @@ func producer(execs int, integers chan int, barr *sync.WaitGroup) {
 	}
 }
 
-func consumer(execs int, integers <-chan int, barr *sync.WaitGroup) {
-	defer barr.Done()
+func consumer(execs int, integers <-chan int, wg *sync.WaitGroup) {
+	defer wg.Done()
 	
 	for i := 0; i < execs; i++ {
 		n := <- integers
@@ -38,15 +38,15 @@ func main() {
 	
 		integers := make(chan int)
 		
-		var barr sync.WaitGroup
-		barr.Add(2 * goroutines)
+		var wg sync.WaitGroup
+		wg.Add(2 * goroutines)
 		
 		for i := 0; i < goroutines; i++ {
-			go producer(execs, integers, &barr)
-			go consumer(execs, integers, &barr)
+			go producer(execs, integers, &wg)
+			go consumer(execs, integers, &wg)
 		}
 
-		barr.Wait()
+		wg.Wait()
 
 		var m runtime.MemStats
 		runtime.ReadMemStats(&m)
