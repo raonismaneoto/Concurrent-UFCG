@@ -32,7 +32,6 @@ public class Main {
 			long finalMemory = getMemory();
 			
 			System.out.printf("%dKb of memory used for %d threads\n", (finalMemory - initialMemory) / 1024, numberOfThreads);
-			
 		}
 	}
 }
