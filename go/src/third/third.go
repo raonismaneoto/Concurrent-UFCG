@@ -7,14 +7,15 @@ import (
 )
 
 func closeCh(done chan interface{}) {
-	randomNumb := utils.RandomInt(1, 15)
+	randomNumb := utils.RandomInt(1, 40)
 	time.Sleep(time.Duration(randomNumb) * time.Second)
 	close(done)
 }
 
 func executeRealibleRequest(ch chan string, done chan interface{}) {
-	go utils.ReliableRequest(ch)
 	for {
+		ch := make(chan string, 3)
+		go utils.ReliableRequest(ch)
 		select {
 		case <-done:
 			fmt.Println("Its over")
